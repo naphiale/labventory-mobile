@@ -69,7 +69,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
 
 ### 5. Step by Step
 
-# 1. Membuat Program Flutter Baru
+#### 1. Membuat Program Flutter Baru
 
 1. **Buka Terminal atau Command Prompt**:
    - Buat dan masuk ke direktori tempat proyek akan disimpan.
