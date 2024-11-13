@@ -5,6 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 ---
+# Tugas 7
 
 ## 1. Perbedaan *Stateless Widget* dan *Stateful Widget*
 
@@ -204,135 +205,117 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
 
 ---
 
-## *1. Mengapa Perlu Membuat Model untuk Pengambilan/Pengiriman Data JSON?*
-Model berfungsi sebagai representasi struktur data yang akan diolah, baik untuk menerima data dari API (parsing) maupun untuk mengirim data ke API (serialization). Model ini penting karena:
+# Tugas 8
 
-- *Mempermudah Pengelolaan Data*: Dengan model, kita dapat memanipulasi data secara terstruktur tanpa harus mengakses elemen JSON secara manual.
-- *Meningkatkan Keamanan*: Model memungkinkan validasi data sebelum data diterima atau dikirim.
-- *Meningkatkan Readability dan Maintainability*: Model membantu memisahkan logika data dari logika UI, sehingga kode lebih mudah dibaca dan dipelihara.
+## 1. Kegunaan dan Keuntungan Menggunakan const di Flutter
+#### *Kegunaan const:*
+- const digunakan untuk mendefinisikan *immutable widgets* atau nilai tetap yang tidak berubah selama runtime.
+- Memberitahu Flutter untuk *mengoptimalkan widget* karena nilainya tidak akan berubah.
 
-Jika tidak membuat model terlebih dahulu:
-- Tidak akan terjadi error jika kita hanya menampilkan data sederhana.
-- Namun, untuk aplikasi besar dengan banyak data kompleks, pengolahan data secara manual rentan terhadap *human error*, kesalahan parsing, atau ketidaksesuaian format data.
+#### *Keuntungan Menggunakan const:*
+1. *Efisiensi Memori:* Widget yang menggunakan const disimpan sebagai satu instance dalam memori, sehingga mengurangi alokasi memori.
+2. *Performa Lebih Baik:* Flutter dapat menghindari render ulang pada widget const karena dianggap tidak berubah.
+3. *Meningkatkan Readability:* Memberikan sinyal kepada developer lain bahwa widget atau nilai bersifat tetap.
 
----
+#### *Kapan Menggunakan const:*
+- Gunakan const untuk widget yang tidak akan berubah nilainya selama runtime, seperti teks statis, padding tetap, atau icon.
 
-## *2. Fungsi dari Library http*
-Library http di Flutter digunakan untuk melakukan permintaan HTTP, seperti GET, POST, PUT, dan DELETE, ke server. Beberapa fungsi utama dari library ini adalah:
+#### *Kapan Tidak Menggunakan const:*
+- Hindari const untuk widget yang bergantung pada input atau variabel dinamis yang nilainya berubah selama runtime.
 
-- *Melakukan Permintaan HTTP*: Mengirimkan request dan menerima response dari API.
-- *Mengolah Data JSON*: Memungkinkan aplikasi Flutter untuk menerima dan memproses data JSON yang diterima dari server.
-- *Komunikasi dengan Backend*: Menjembatani aplikasi Flutter dengan backend berbasis REST API, seperti Django.
+## 2. Perbandingan Column dan Row
+#### *Column:*
+- Menyusun widget *secara vertikal* (dari atas ke bawah).
+- Cocok untuk layout berbasis konten seperti form atau daftar.
 
-Implementasi pada tugas ini:
-- http.get: Digunakan untuk mengambil data dari API.
-- http.post: Digunakan untuk mengirim data ke API, seperti data login atau registrasi.
+#### *Row:*
+- Menyusun widget *secara horizontal* (dari kiri ke kanan).
+- Digunakan untuk menampilkan elemen yang berjejer, seperti ikon dengan teks.
 
----
+#### *Contoh Implementasi:*
+1. *Column:*
+   dart
+   Column(
+     mainAxisAlignment: MainAxisAlignment.center,
+     children: [
+       Text('Judul'),
+       Text('Subjudul'),
+       ElevatedButton(onPressed: () {}, child: Text('Klik'))
+     ],
+   )
+   
 
-## *3. Fungsi dari CookieRequest*
-CookieRequest adalah komponen dari package pbp_django_auth yang digunakan untuk menangani sesi autentikasi berbasis cookie di Flutter. Fungsi utamanya:
+2. *Row:*
+   dart
+   Row(
+     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+     children: [
+       Icon(Icons.menu),
+       Text('Judul Halaman'),
+       Icon(Icons.settings)
+     ],
+   )
+   
 
-- *Menyimpan Cookie*: Membantu menyimpan dan mengirimkan cookie yang diterima dari server Django untuk autentikasi.
-- *Mengelola Sesi*: Memastikan pengguna tetap masuk (logged in) hingga mereka logout.
-- *Mempermudah Request*: Menyediakan metode seperti login, logout, dan get untuk mempermudah komunikasi dengan server.
 
-*Mengapa CookieRequest Perlu Dibagikan ke Semua Komponen?*
-- Instance CookieRequest harus bersifat *global* karena cookie yang tersimpan di dalamnya digunakan untuk setiap request ke server.
-- Dengan membagikannya, kita dapat menjaga sesi autentikasi dan memastikan bahwa semua komponen dalam aplikasi dapat mengakses data pengguna yang relevan.
+## *3. Elemen Input yang Digunakan dan Elemen Lainnya*
+#### *Elemen Input yang Digunakan:*
+- *TextFormField:* Untuk menerima teks (misalnya, mood dan deskripsi perasaan).
+- *Slider:* Untuk menerima intensitas mood dalam skala tertentu.
+- *ElevatedButton:* Untuk tombol simpan data.
 
----
+#### *Elemen Input Lain yang Tidak Digunakan:*
+- *Checkbox:* Untuk memilih nilai boolean (ya/tidak).
+- *Switch:* Untuk mengaktifkan/mematikan fitur tertentu.
+- *Radio:* Untuk memilih salah satu dari beberapa opsi.
+- *DropdownButton:* Untuk memilih opsi dari daftar dropdown.
+- *DatePicker:* Untuk memilih tanggal.
 
-## *4. Mekanisme Pengiriman Data dari Input hingga Ditampilkan pada Flutter*
-1. *Input Data*:
-   - Pengguna memasukkan data di aplikasi Flutter melalui widget seperti TextField atau Form.
+Elemen ini tidak digunakan karena tidak relevan dengan form mood entry.
 
-2. *Pengiriman Data*:
-   - Data yang diinput oleh pengguna dikumpulkan dan dikirim ke server menggunakan request HTTP (misalnya, http.post) atau melalui instance CookieRequest.
+## 4. Mengatur Tema dalam Aplikasi Flutter
+#### *Mengatur Tema:*
+- Tema dapat diatur menggunakan properti ThemeData di MaterialApp.
+- Contohnya:
+  dart
+  MaterialApp(
+    theme: ThemeData(
+      primaryColor: Colors.blue,
+      textTheme: TextTheme(
+        bodyText1: TextStyle(fontSize: 16, color: Colors.black),
+      ),
+    ),
+  );
+  
 
-3. *Pengolahan Data di Backend*:
-   - Backend Django menerima data, memprosesnya (misalnya, menyimpan ke database atau melakukan perhitungan), dan mengembalikan response dalam format JSON.
+#### *Konsistensi Tema:*
+- Menggunakan tema global memastikan semua widget menggunakan gaya yang seragam.
+- Tema ini mencakup warna utama, font, dan gaya teks.
 
-4. *Parsing Data*:
-   - Data JSON dari response backend diterima oleh Flutter.
-   - JSON di-decode menggunakan fungsi json.decode atau dimasukkan ke dalam model menggunakan fromJson.
+#### *Implementasi Tema di Proyek Ini:*
+- Jika tema belum diterapkan, sebaiknya tambahkan untuk konsistensi desain.
 
-5. *Menampilkan Data*:
-   - Data yang telah diproses atau diubah menjadi model ditampilkan di UI Flutter menggunakan widget seperti ListView, Text, atau widget lainnya.
+## 5. Menangani Navigasi dengan Banyak Halaman
+#### *Cara Menangani Navigasi:*
+1. *Menggunakan Navigator:*
+   - Metode push dan pushReplacement digunakan untuk berpindah halaman.
+   dart
+   Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanBaru()));
+   
 
----
+2. *Menentukan Route di MaterialApp:*
+   - Menentukan daftar route di MaterialApp untuk navigasi yang lebih terstruktur.
+   dart
+   MaterialApp(
+     initialRoute: '/',
+     routes: {
+       '/': (context) => HomePage(),
+       '/form': (context) => FormPage(),
+     },
+   );
+   
 
-## *5. Mekanisme Autentikasi (Login, Register, Logout)*
-
-#### *Mekanisme Login*:
-1. Pengguna memasukkan username dan password di Flutter.
-2. Flutter mengirimkan request POST ke endpoint Django (misalnya /auth/login/) dengan data username dan password.
-3. Django:
-   - Memvalidasi data pengguna di database.
-   - Jika valid, mengembalikan response berisi cookie sesi yang akan digunakan untuk autentikasi selanjutnya.
-4. Flutter:
-   - CookieRequest menyimpan cookie sesi.
-   - Menu utama atau halaman selanjutnya ditampilkan sesuai status login.
-
-#### *Mekanisme Register*:
-1. Pengguna mengisi form registrasi di Flutter.
-2. Flutter mengirimkan request POST ke endpoint Django (misalnya /auth/register/) dengan data pengguna.
-3. Django:
-   - Memvalidasi dan menyimpan data pengguna di database.
-   - Mengembalikan response sukses atau error.
-4. Flutter:
-   - Menampilkan notifikasi kepada pengguna berdasarkan response (misalnya, sukses registrasi).
-
-#### *Mekanisme Logout*:
-1. Pengguna menekan tombol logout di Flutter.
-2. Flutter mengirimkan request ke endpoint Django (misalnya /auth/logout/).
-3. Django:
-   - Menghapus sesi pengguna di server.
-4. Flutter:
-   - Menghapus cookie dari CookieRequest.
-   - Mengalihkan pengguna ke halaman login.
-
----
-
-## Step by Step
-
-### *1. Membuat Drawer Menu*
-1. *Buat File Baru:*
-   - Buat file left_drawer.dart di folder widgets untuk menampung komponen Drawer.
-
-2. *Tambahkan Struktur Drawer:*
-   - Gunakan widget Drawer yang berisi DrawerHeader untuk menampilkan judul aplikasi atau pesan motivasi.
-   - Tambahkan beberapa ListTile untuk navigasi ke halaman lain seperti Halaman Utama dan Tambah Mood.
-
-3. *Integrasikan Drawer ke Halaman Utama:*
-   - Di file menu.dart atau halaman utama lainnya, tambahkan drawer ke dalam widget Scaffold dan impor LeftDrawer.
-
----
-
-### *2. Membuat Halaman Form Tambah Mood*
-1. *Buat File Baru:*
-   - Buat file moodentry_form.dart untuk menampung halaman form.
-
-2. *Tambahkan Scaffold dengan Drawer:*
-   - Gunakan widget Scaffold untuk menambahkan AppBar dan Drawer ke halaman ini.
-
-3. *Buat Form Input:*
-   - Gunakan Form dengan beberapa TextFormField untuk menerima input dari pengguna:
-     - *Mood*: Teks untuk mood yang dirasakan.
-     - *Feelings*: Teks untuk deskripsi perasaan.
-     - *Mood Intensity*: Angka untuk intensitas mood (misalnya skala 1-10).
-
-4. *Tambahkan Tombol Simpan:*
-   - Gunakan widget ElevatedButton untuk menyimpan input pengguna.
-   - Validasi input menggunakan Form dan tampilkan dialog konfirmasi setelah data berhasil disimpan.
-
----
-
-### *3. Menghubungkan Drawer Menu dengan Halaman Form*
-1. *Tambahkan Navigasi:*
-   - Di file left_drawer.dart, tambahkan fungsi navigasi ke halaman Form Tambah Mood menggunakan Navigator.pushReplacement.
-
-2. *Uji Aplikasi:*
-   - Jalankan aplikasi dan pastikan Drawer dapat digunakan untuk berpindah ke halaman Form Tambah Mood.
+3. *Library Navigasi Lainnya:*
+   - Gunakan *go_router* atau *auto_route* untuk navigasi yang lebih kompleks.
 
 ---
