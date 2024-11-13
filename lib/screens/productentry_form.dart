@@ -12,7 +12,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
 	String _description = "";
-  double _price = 0.0;
+  double _amount = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Nama",
-                    labelText: "Nama item",
+                    hintText: "Nama item",
+                    labelText: "Nama",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -61,8 +61,8 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Deskripsi",
-                    labelText: "Deskripsi item",
+                    hintText: "Deskripsi item",
+                    labelText: "Deskripsi",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -84,8 +84,8 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Harga",
-                    labelText: "Harga",
+                    hintText: "Jumlah",
+                    labelText: "Jumlah item",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -93,15 +93,15 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   keyboardType: TextInputType.number,
                   onChanged: (String? value) {
                     setState(() {
-                      _price = double.tryParse(value!) ?? 0;
+                      _amount = double.tryParse(value!) ?? 0;
                     });
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Harga tidak boleh kosong!";
+                      return "Jumlah item tidak boleh kosong!";
                     }
                     if (double.tryParse(value) == null) {
-                      return "Harga harus berupa angka!";
+                      return "Jumlah item harus berupa angka!";
                     }
                     return null;
                   },
@@ -129,7 +129,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                                   children: [
                                     Text('Nama: $_name'),
                                     Text('Deskripsi: $_description'),
-                                    Text('Harga: $_price'),
+                                    Text('Jumlah: $_amount'),
                                   ],
                                 ),
                               ),
