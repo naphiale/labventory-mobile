@@ -271,8 +271,6 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
 - *DropdownButton:* Untuk memilih opsi dari daftar dropdown.
 - *DatePicker:* Untuk memilih tanggal.
 
-Elemen ini tidak digunakan karena tidak relevan dengan form mood entry.
-
 ## 4. Mengatur Tema dalam Aplikasi Flutter
 #### *Mengatur Tema:*
 - Tema dapat diatur menggunakan properti ThemeData di MaterialApp.
@@ -291,9 +289,6 @@ Elemen ini tidak digunakan karena tidak relevan dengan form mood entry.
 #### *Konsistensi Tema:*
 - Menggunakan tema global memastikan semua widget menggunakan gaya yang seragam.
 - Tema ini mencakup warna utama, font, dan gaya teks.
-
-#### *Implementasi Tema di Proyek Ini:*
-- Jika tema belum diterapkan, sebaiknya tambahkan untuk konsistensi desain.
 
 ## 5. Menangani Navigasi dengan Banyak Halaman
 #### *Cara Menangani Navigasi:*
