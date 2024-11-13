@@ -5,8 +5,9 @@ A new Flutter project.
 ## Getting Started
 
 ---
+# Tugas 7
 
-### 1. Perbedaan *Stateless Widget* dan *Stateful Widget*
+## 1. Perbedaan *Stateless Widget* dan *Stateful Widget*
 
 - **Stateless Widget**: Widget yang **tidak memiliki kondisi** atau **state** yang bisa berubah. Stateless widget digunakan ketika tampilan dan perilaku widget tidak dipengaruhi oleh interaksi pengguna atau perubahan data. Sekali widget ini dirender, isinya tetap sama dan tidak bisa diubah. Contoh: `Text`, `Icon`, dan `Container`.
 
@@ -16,7 +17,7 @@ A new Flutter project.
   - *Stateless*: Tidak memiliki objek `State`. Tidak bisa berubah setelah dirender.
   - *Stateful*: Memiliki objek `State`. Bisa berubah seiring waktu dan merender ulang berdasarkan perubahan state.
 
-### 2. Widget yang Digunakan dalam Proyek dan Fungsinya
+## 2. Widget yang Digunakan dalam Proyek dan Fungsinya
 
 Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fungsinya:
 
@@ -42,7 +43,7 @@ Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fung
 
 - **`Icon`** dan **`Text`**: Menampilkan ikon dan teks pada tombol, sesuai dengan fungsi dan label yang ditentukan dalam `ItemHomepage`.
 
-### 3. Fungsi `setState()`
+## 3. Fungsi `setState()`
 
 `setState()` adalah fungsi khusus dalam *Stateful Widget* yang digunakan untuk **memperbarui state** dan **merender ulang tampilan**. Ketika `setState()` dipanggil, widget akan memanggil ulang metode `build()` dan memperbarui tampilan dengan nilai terbaru. Contoh variabel yang bisa terdampak oleh `setState()` antara lain:
 
@@ -51,7 +52,7 @@ Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fung
 
 Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` karena tidak ada data atau variabel yang perlu diperbarui.
 
-### 4. Perbedaan `const` dan `final`
+## 4. Perbedaan `const` dan `final`
 
 - **`const`**:
   - Digunakan untuk **nilai yang bersifat konstan** pada waktu kompilasi. Dengan kata lain, nilai `const` harus diketahui dan tidak boleh berubah setelah kode dikompilasi.
@@ -67,9 +68,9 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
   - `const`: `const double pi = 3.14;` (nilai ini tetap, sehingga bisa digunakan `const`).
   - `final`: `final String userName = getUserName();` (nilai `userName` didapatkan saat runtime, sehingga menggunakan `final`).
 
-### 5. Step by Step
+## 5. Step by Step
 
-# 1. Membuat Program Flutter Baru
+### 1. Membuat Program Flutter Baru
 
 1. **Buka Terminal atau Command Prompt**:
    - Buat dan masuk ke direktori tempat proyek akan disimpan.
@@ -89,7 +90,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    flutter run
    ```
 
-# 2. Membuat Tiga Tombol dengan Ikon dan Teks
+### 2. Membuat Tiga Tombol dengan Ikon dan Teks
 
 1. Buka file `lib/main.dart` di proyek.
 
@@ -119,7 +120,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 3. Membuat Tombol dengan Ikon dan Warna Berbeda untuk Setiap Tombol
+### 3. Membuat Tombol dengan Ikon dan Warna Berbeda untuk Setiap Tombol
 
 1. Tambahkan kode dalam class `MyHomePage` untuk menampilkan tombol-tombol dengan warna, teks, dan ikon yang berbeda.
 
@@ -161,7 +162,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 4. Mengintegrasikan Tombol di Halaman Utama (`MyHomePage`)
+### 4. Mengintegrasikan Tombol di Halaman Utama (`MyHomePage`)
 
 1. Di dalam `Widget build` di `MyHomePage`, tambahkan `GridView.count` untuk menampilkan tombol dalam grid dengan jarak yang rapi.
 
@@ -193,7 +194,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 5. Menjalankan dan Menguji Program
+### 5. Menjalankan dan Menguji Program
 
 1. Jalankan aplikasi:
    ```bash
@@ -201,3 +202,115 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    ```
 
 2. Uji setiap tombol untuk memastikan Snackbar muncul dengan pesan yang sesuai saat tombol ditekan.
+
+---
+
+# Tugas 8
+
+## 1. Kegunaan dan Keuntungan Menggunakan const di Flutter
+#### *Kegunaan const:*
+- const digunakan untuk mendefinisikan *immutable widgets* atau nilai tetap yang tidak berubah selama runtime.
+- Memberitahu Flutter untuk *mengoptimalkan widget* karena nilainya tidak akan berubah.
+
+#### *Keuntungan Menggunakan const:*
+1. *Efisiensi Memori:* Widget yang menggunakan const disimpan sebagai satu instance dalam memori, sehingga mengurangi alokasi memori.
+2. *Performa Lebih Baik:* Flutter dapat menghindari render ulang pada widget const karena dianggap tidak berubah.
+3. *Meningkatkan Readability:* Memberikan sinyal kepada developer lain bahwa widget atau nilai bersifat tetap.
+
+#### *Kapan Menggunakan const:*
+- Gunakan const untuk widget yang tidak akan berubah nilainya selama runtime, seperti teks statis, padding tetap, atau icon.
+
+#### *Kapan Tidak Menggunakan const:*
+- Hindari const untuk widget yang bergantung pada input atau variabel dinamis yang nilainya berubah selama runtime.
+
+## 2. Perbandingan Column dan Row
+#### *Column:*
+- Menyusun widget *secara vertikal* (dari atas ke bawah).
+- Cocok untuk layout berbasis konten seperti form atau daftar.
+
+#### *Row:*
+- Menyusun widget *secara horizontal* (dari kiri ke kanan).
+- Digunakan untuk menampilkan elemen yang berjejer, seperti ikon dengan teks.
+
+#### *Contoh Implementasi:*
+1. *Column:*
+   dart
+   Column(
+     mainAxisAlignment: MainAxisAlignment.center,
+     children: [
+       Text('Judul'),
+       Text('Subjudul'),
+       ElevatedButton(onPressed: () {}, child: Text('Klik'))
+     ],
+   )
+   
+
+2. *Row:*
+   dart
+   Row(
+     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+     children: [
+       Icon(Icons.menu),
+       Text('Judul Halaman'),
+       Icon(Icons.settings)
+     ],
+   )
+   
+
+
+## *3. Elemen Input yang Digunakan dan Elemen Lainnya*
+#### *Elemen Input yang Digunakan:*
+- *TextFormField:* Untuk menerima teks (misalnya, mood dan deskripsi perasaan).
+- *Slider:* Untuk menerima intensitas mood dalam skala tertentu.
+- *ElevatedButton:* Untuk tombol simpan data.
+
+#### *Elemen Input Lain yang Tidak Digunakan:*
+- *Checkbox:* Untuk memilih nilai boolean (ya/tidak).
+- *Switch:* Untuk mengaktifkan/mematikan fitur tertentu.
+- *Radio:* Untuk memilih salah satu dari beberapa opsi.
+- *DropdownButton:* Untuk memilih opsi dari daftar dropdown.
+- *DatePicker:* Untuk memilih tanggal.
+
+## 4. Mengatur Tema dalam Aplikasi Flutter
+#### *Mengatur Tema:*
+- Tema dapat diatur menggunakan properti ThemeData di MaterialApp.
+- Contohnya:
+  dart
+  MaterialApp(
+    theme: ThemeData(
+      primaryColor: Colors.blue,
+      textTheme: TextTheme(
+        bodyText1: TextStyle(fontSize: 16, color: Colors.black),
+      ),
+    ),
+  );
+  
+
+#### *Konsistensi Tema:*
+- Menggunakan tema global memastikan semua widget menggunakan gaya yang seragam.
+- Tema ini mencakup warna utama, font, dan gaya teks.
+
+## 5. Menangani Navigasi dengan Banyak Halaman
+#### *Cara Menangani Navigasi:*
+1. *Menggunakan Navigator:*
+   - Metode push dan pushReplacement digunakan untuk berpindah halaman.
+   dart
+   Navigator.push(context, MaterialPageRoute(builder: (context) => HalamanBaru()));
+   
+
+2. *Menentukan Route di MaterialApp:*
+   - Menentukan daftar route di MaterialApp untuk navigasi yang lebih terstruktur.
+   dart
+   MaterialApp(
+     initialRoute: '/',
+     routes: {
+       '/': (context) => HomePage(),
+       '/form': (context) => FormPage(),
+     },
+   );
+   
+
+3. *Library Navigasi Lainnya:*
+   - Gunakan *go_router* atau *auto_route* untuk navigasi yang lebih kompleks.
+
+---
