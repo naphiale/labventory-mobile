@@ -6,7 +6,7 @@ A new Flutter project.
 
 ---
 
-### 1. Perbedaan *Stateless Widget* dan *Stateful Widget*
+## 1. Perbedaan *Stateless Widget* dan *Stateful Widget*
 
 - **Stateless Widget**: Widget yang **tidak memiliki kondisi** atau **state** yang bisa berubah. Stateless widget digunakan ketika tampilan dan perilaku widget tidak dipengaruhi oleh interaksi pengguna atau perubahan data. Sekali widget ini dirender, isinya tetap sama dan tidak bisa diubah. Contoh: `Text`, `Icon`, dan `Container`.
 
@@ -16,7 +16,7 @@ A new Flutter project.
   - *Stateless*: Tidak memiliki objek `State`. Tidak bisa berubah setelah dirender.
   - *Stateful*: Memiliki objek `State`. Bisa berubah seiring waktu dan merender ulang berdasarkan perubahan state.
 
-### 2. Widget yang Digunakan dalam Proyek dan Fungsinya
+## 2. Widget yang Digunakan dalam Proyek dan Fungsinya
 
 Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fungsinya:
 
@@ -42,7 +42,7 @@ Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fung
 
 - **`Icon`** dan **`Text`**: Menampilkan ikon dan teks pada tombol, sesuai dengan fungsi dan label yang ditentukan dalam `ItemHomepage`.
 
-### 3. Fungsi `setState()`
+## 3. Fungsi `setState()`
 
 `setState()` adalah fungsi khusus dalam *Stateful Widget* yang digunakan untuk **memperbarui state** dan **merender ulang tampilan**. Ketika `setState()` dipanggil, widget akan memanggil ulang metode `build()` dan memperbarui tampilan dengan nilai terbaru. Contoh variabel yang bisa terdampak oleh `setState()` antara lain:
 
@@ -51,7 +51,7 @@ Berikut adalah daftar widget yang digunakan dalam proyek ini dan penjelasan fung
 
 Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` karena tidak ada data atau variabel yang perlu diperbarui.
 
-### 4. Perbedaan `const` dan `final`
+## 4. Perbedaan `const` dan `final`
 
 - **`const`**:
   - Digunakan untuk **nilai yang bersifat konstan** pada waktu kompilasi. Dengan kata lain, nilai `const` harus diketahui dan tidak boleh berubah setelah kode dikompilasi.
@@ -67,9 +67,9 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
   - `const`: `const double pi = 3.14;` (nilai ini tetap, sehingga bisa digunakan `const`).
   - `final`: `final String userName = getUserName();` (nilai `userName` didapatkan saat runtime, sehingga menggunakan `final`).
 
-### 5. Step by Step
+## 5. Step by Step
 
-#### 1. Membuat Program Flutter Baru
+### 1. Membuat Program Flutter Baru
 
 1. **Buka Terminal atau Command Prompt**:
    - Buat dan masuk ke direktori tempat proyek akan disimpan.
@@ -89,7 +89,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    flutter run
    ```
 
-# 2. Membuat Tiga Tombol dengan Ikon dan Teks
+### 2. Membuat Tiga Tombol dengan Ikon dan Teks
 
 1. Buka file `lib/main.dart` di proyek.
 
@@ -119,7 +119,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 3. Membuat Tombol dengan Ikon dan Warna Berbeda untuk Setiap Tombol
+### 3. Membuat Tombol dengan Ikon dan Warna Berbeda untuk Setiap Tombol
 
 1. Tambahkan kode dalam class `MyHomePage` untuk menampilkan tombol-tombol dengan warna, teks, dan ikon yang berbeda.
 
@@ -161,7 +161,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 4. Mengintegrasikan Tombol di Halaman Utama (`MyHomePage`)
+### 4. Mengintegrasikan Tombol di Halaman Utama (`MyHomePage`)
 
 1. Di dalam `Widget build` di `MyHomePage`, tambahkan `GridView.count` untuk menampilkan tombol dalam grid dengan jarak yang rapi.
 
@@ -193,7 +193,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    }
    ```
 
-# 5. Menjalankan dan Menguji Program
+### 5. Menjalankan dan Menguji Program
 
 1. Jalankan aplikasi:
    ```bash
@@ -204,7 +204,7 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
 
 ---
 
-### *1. Mengapa Perlu Membuat Model untuk Pengambilan/Pengiriman Data JSON?*
+## *1. Mengapa Perlu Membuat Model untuk Pengambilan/Pengiriman Data JSON?*
 Model berfungsi sebagai representasi struktur data yang akan diolah, baik untuk menerima data dari API (parsing) maupun untuk mengirim data ke API (serialization). Model ini penting karena:
 
 - *Mempermudah Pengelolaan Data*: Dengan model, kita dapat memanipulasi data secara terstruktur tanpa harus mengakses elemen JSON secara manual.
@@ -217,7 +217,7 @@ Jika tidak membuat model terlebih dahulu:
 
 ---
 
-### *2. Fungsi dari Library http*
+## *2. Fungsi dari Library http*
 Library http di Flutter digunakan untuk melakukan permintaan HTTP, seperti GET, POST, PUT, dan DELETE, ke server. Beberapa fungsi utama dari library ini adalah:
 
 - *Melakukan Permintaan HTTP*: Mengirimkan request dan menerima response dari API.
@@ -230,7 +230,7 @@ Implementasi pada tugas ini:
 
 ---
 
-### *3. Fungsi dari CookieRequest*
+## *3. Fungsi dari CookieRequest*
 CookieRequest adalah komponen dari package pbp_django_auth yang digunakan untuk menangani sesi autentikasi berbasis cookie di Flutter. Fungsi utamanya:
 
 - *Menyimpan Cookie*: Membantu menyimpan dan mengirimkan cookie yang diterima dari server Django untuk autentikasi.
@@ -243,7 +243,7 @@ CookieRequest adalah komponen dari package pbp_django_auth yang digunakan untuk 
 
 ---
 
-### *4. Mekanisme Pengiriman Data dari Input hingga Ditampilkan pada Flutter*
+## *4. Mekanisme Pengiriman Data dari Input hingga Ditampilkan pada Flutter*
 1. *Input Data*:
    - Pengguna memasukkan data di aplikasi Flutter melalui widget seperti TextField atau Form.
 
@@ -262,7 +262,7 @@ CookieRequest adalah komponen dari package pbp_django_auth yang digunakan untuk 
 
 ---
 
-### *5. Mekanisme Autentikasi (Login, Register, Logout)*
+## *5. Mekanisme Autentikasi (Login, Register, Logout)*
 
 #### *Mekanisme Login*:
 1. Pengguna memasukkan username dan password di Flutter.
@@ -291,5 +291,48 @@ CookieRequest adalah komponen dari package pbp_django_auth yang digunakan untuk 
 4. Flutter:
    - Menghapus cookie dari CookieRequest.
    - Mengalihkan pengguna ke halaman login.
+
+---
+
+## Step by Step
+
+### *1. Membuat Drawer Menu*
+1. *Buat File Baru:*
+   - Buat file left_drawer.dart di folder widgets untuk menampung komponen Drawer.
+
+2. *Tambahkan Struktur Drawer:*
+   - Gunakan widget Drawer yang berisi DrawerHeader untuk menampilkan judul aplikasi atau pesan motivasi.
+   - Tambahkan beberapa ListTile untuk navigasi ke halaman lain seperti Halaman Utama dan Tambah Mood.
+
+3. *Integrasikan Drawer ke Halaman Utama:*
+   - Di file menu.dart atau halaman utama lainnya, tambahkan drawer ke dalam widget Scaffold dan impor LeftDrawer.
+
+---
+
+### *2. Membuat Halaman Form Tambah Mood*
+1. *Buat File Baru:*
+   - Buat file moodentry_form.dart untuk menampung halaman form.
+
+2. *Tambahkan Scaffold dengan Drawer:*
+   - Gunakan widget Scaffold untuk menambahkan AppBar dan Drawer ke halaman ini.
+
+3. *Buat Form Input:*
+   - Gunakan Form dengan beberapa TextFormField untuk menerima input dari pengguna:
+     - *Mood*: Teks untuk mood yang dirasakan.
+     - *Feelings*: Teks untuk deskripsi perasaan.
+     - *Mood Intensity*: Angka untuk intensitas mood (misalnya skala 1-10).
+
+4. *Tambahkan Tombol Simpan:*
+   - Gunakan widget ElevatedButton untuk menyimpan input pengguna.
+   - Validasi input menggunakan Form dan tampilkan dialog konfirmasi setelah data berhasil disimpan.
+
+---
+
+### *3. Menghubungkan Drawer Menu dengan Halaman Form*
+1. *Tambahkan Navigasi:*
+   - Di file left_drawer.dart, tambahkan fungsi navigasi ke halaman Form Tambah Mood menggunakan Navigator.pushReplacement.
+
+2. *Uji Aplikasi:*
+   - Jalankan aplikasi dan pastikan Drawer dapat digunakan untuk berpindah ke halaman Form Tambah Mood.
 
 ---
