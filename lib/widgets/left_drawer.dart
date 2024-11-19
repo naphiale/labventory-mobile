@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:labventory/screens/menu.dart';
 import 'package:labventory/screens/productentry_form.dart';
+import 'package:labventory/screens/list_productentry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -61,6 +62,17 @@ class LeftDrawer extends StatelessWidget {
                     builder: (context) => const ProductEntryFormPage(),
                   ),
                 );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.add_reaction_rounded),
+              title: const Text('Daftar Product'),
+              onTap: () {
+                  // Route menu ke halaman produk
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+                  );
               },
             ),
         ],
