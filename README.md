@@ -204,7 +204,6 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
 2. Uji setiap tombol untuk memastikan Snackbar muncul dengan pesan yang sesuai saat tombol ditekan.
 
 ---
-
 # Tugas 8
 
 ## 1. Kegunaan dan Keuntungan Menggunakan const di Flutter
@@ -314,3 +313,141 @@ Di proyek ini, karena menggunakan *Stateless Widget*, tidak ada `setState()` kar
    - Gunakan *go_router* atau *auto_route* untuk navigasi yang lebih kompleks.
 
 ---
+# Tugas 9
+
+## **1. Mengapa Perlu Membuat Model untuk Pengambilan atau Pengiriman Data JSON?**
+Model dalam aplikasi berfungsi sebagai representasi struktur data yang digunakan oleh aplikasi. Saat mengambil atau mengirimkan data JSON, model memberikan kerangka kerja yang memudahkan:
+
+#### **Alasan Membuat Model:**
+- **Validasi Data:** Model memastikan bahwa data yang diambil atau dikirim memiliki format dan tipe data yang benar.
+- **Mudah Dibaca dan Dikelola:** Model memberikan struktur yang terorganisir, mempermudah pengelolaan data kompleks.
+- **Memastikan Konsistensi:** Model meminimalkan kesalahan saat memproses data, karena setiap atribut telah didefinisikan sebelumnya.
+- **Kemudahan Konversi:** Dalam Flutter, model mempermudah konversi dari JSON ke objek Dart atau sebaliknya menggunakan `fromJson()` dan `toJson()`.
+
+#### **Apakah Akan Terjadi Error Jika Tidak Membuat Model?**
+Tidak membuat model tidak selalu menyebabkan error, tetapi akan meningkatkan kemungkinan:
+- **Kesalahan Penanganan Data:** Tanpa model, data harus diproses langsung dari format JSON mentah, meningkatkan risiko kesalahan parsing.
+- **Kesulitan Debugging:** Tanpa struktur model, mencari sumber kesalahan dalam data yang kompleks menjadi lebih sulit.
+- **Ketidakselarasan Data:** Perubahan kecil pada format JSON dari server bisa menyebabkan aplikasi tidak berfungsi dengan baik.
+
+## **2. Fungsi Library `http`**
+Library `http` digunakan untuk melakukan komunikasi antara aplikasi Flutter dan server. Berikut adalah fungsi utamanya:
+- **Mengirim Request HTTP:** Library ini memungkinkan pengiriman request `GET`, `POST`, `PUT`, dan `DELETE` ke server.
+- **Mengambil Data dari Server:** Data dari endpoint server dapat diambil dalam format JSON, lalu diolah di aplikasi.
+- **Autentikasi Header:** Library mendukung penambahan header seperti token atau autentikasi lainnya.
+- **Handle Response:** Library mempermudah pengelolaan response dari server, termasuk memeriksa status kode dan memproses data JSON.
+
+Contoh penggunaan:
+```dart
+import 'package:http/http.dart' as http;
+
+Future<void> fetchData() async {
+  final response = await http.get(Uri.parse('https://api.example.com/items'));
+  if (response.statusCode == 200) {
+    print(response.body); // Data berhasil diambil
+  } else {
+    print("Error: ${response.statusCode}");
+  }
+}
+```
+
+## **3. Fungsi dan Pentingnya `CookieRequest`**
+#### **Fungsi CookieRequest:**
+`CookieRequest` adalah mekanisme untuk menangani sesi dan autentikasi berbasis cookie pada aplikasi Flutter. Fungsinya meliputi:
+- **Menyimpan Cookie:** Setelah login, server biasanya mengirimkan cookie untuk mengidentifikasi sesi pengguna. `CookieRequest` menyimpan cookie ini.
+- **Melampirkan Cookie:** Setiap request berikutnya ke server otomatis menyertakan cookie ini, memungkinkan server mengenali pengguna tanpa login ulang.
+- **Mengelola Otentikasi:** `CookieRequest` memungkinkan aplikasi untuk menangani autentikasi pengguna dengan lebih aman dan konsisten.
+
+#### **Mengapa `CookieRequest` Dibagikan ke Semua Komponen?**
+- **Konsistensi Sesi:** Semua komponen aplikasi membutuhkan cookie untuk mengakses data atau endpoint yang memerlukan autentikasi.
+- **Kemudahan Akses:** Dengan membagikan instance `CookieRequest`, semua bagian aplikasi bisa memanfaatkan sesi yang sama tanpa perlu mengelola cookie secara terpisah.
+- **Efisiensi:** Mengelola sesi di satu tempat (global) mengurangi duplikasi kode dan kesalahan.
+
+## **4. Mekanisme Pengiriman Data dari Input hingga Ditampilkan di Flutter**
+#### a. **Input Data oleh Pengguna (Frontend):**
+- Pengguna mengisi form di Flutter (misalnya, username, password).
+- Data dikirimkan ke backend menggunakan `http.post()` atau library serupa.
+
+#### b. **Backend (Django):**
+1. Django menerima request dan memprosesnya.
+2. Jika valid, backend menyimpan data ke database atau mengirim respons sesuai permintaan.
+
+#### c. **Response Backend ke Flutter:**
+- Django mengembalikan respons dalam format JSON.
+- Flutter membaca JSON, memetakannya ke model Dart menggunakan `fromJson()`.
+
+#### d. **Tampilan Data di Flutter:**
+- Data ditampilkan menggunakan widget seperti `ListView` atau `Text`.
+
+## **5. Mekanisme Autentikasi Login, Register, dan Logout**
+#### **a. Register**
+1. **Input di Flutter:** Pengguna memasukkan username, email, dan password.
+2. **Kirim Data ke Django:** Flutter mengirim data ke endpoint `/api/register/`.
+3. **Proses di Django:**
+   - Django memvalidasi data menggunakan serializer.
+   - Jika valid, Django membuat pengguna baru.
+4. **Respons ke Flutter:** Django mengembalikan respons sukses, misalnya `{"message": "User created successfully"}`.
+
+#### **b. Login**
+1. **Input di Flutter:** Pengguna memasukkan username dan password.
+2. **Kirim Data ke Django:** Flutter mengirim data ke endpoint `/api/token/`.
+3. **Proses di Django:**
+   - Django memvalidasi kredensial.
+   - Jika valid, Django mengembalikan token JWT.
+4. **Respons ke Flutter:** Django mengembalikan token, misalnya:
+   ```json
+   {
+     "access": "JWT_TOKEN",
+     "refresh": "REFRESH_TOKEN"
+   }
+   ```
+5. **Simpan Token di Flutter:** Token disimpan menggunakan `shared_preferences`.
+
+#### **c. Akses Data setelah Login**
+1. Flutter menyertakan token JWT dalam header Authorization:
+   ```dart
+   headers: {
+     'Authorization': 'Bearer JWT_TOKEN',
+   }
+   ```
+2. Django memverifikasi token dan mengembalikan data yang diminta.
+
+#### **d. Logout**
+1. **Hapus Token:** Pada logout, Flutter menghapus token dari `shared_preferences`.
+2. **Kirim Logout Request (Opsional):** Jika diperlukan, Flutter mengirimkan permintaan logout ke Django untuk menghapus sesi di server.
+
+#### **e. Tampilkan Menu setelah Autentikasi**
+- Jika login berhasil, aplikasi Flutter menavigasi ke halaman utama dengan data pengguna yang telah terautentikasi.
+
+## Implementasi Checklist
+
+1. **Registrasi Akun di Flutter**  
+   - **UI**: Form dengan `TextField` untuk username, email, dan password.  
+   - **Backend**: Kirim data ke Django (`http.post` ke `/api/register/`).  
+   - **Validasi Respons**: Jika sukses, tampilkan pesan atau navigasi ke halaman login.
+
+2. **Halaman Login di Flutter**  
+   - **UI**: Form untuk username dan password.  
+   - **Backend**: Kirim ke `/api/token/` untuk mendapatkan token JWT.  
+   - **Navigasi**: Simpan token di `shared_preferences` dan arahkan ke halaman utama.
+
+3. **Autentikasi Django & Flutter**  
+   - **Token Management**: Gunakan token JWT untuk autentikasi.  
+   - **Authorization Header**: Sertakan token di header setiap request (`Bearer token`).  
+
+4. **Model Kustom di Django**  
+   - **Definisi Model**: Buat model seperti `Item` di `models.py`.  
+   - **Migrasi**: Jalankan `makemigrations` dan `migrate`.  
+   - **API Endpoint**: Buat serializer dan viewset untuk model.
+
+5. **Halaman Daftar Item**  
+   - **Ambil Data**: Gunakan `http.get()` dari endpoint Django.  
+   - **Tampilkan Data**: Gunakan `ListView.builder` untuk menampilkan atribut `name`, `price`, dan `description`.
+
+6. **Halaman Detail Item**  
+   - **Navigasi**: Klik item pada daftar menggunakan `Navigator.push`.  
+   - **Detail UI**: Tampilkan semua atribut item dengan tombol kembali ke daftar.
+
+7. **Filter Item per Pengguna**  
+   - **Backend**: Buat endpoint yang hanya menampilkan item milik pengguna (`filter(user=request.user)`).  
+   - **Flutter**: Kirim request dengan header JWT, tampilkan hasil pada daftar item.
